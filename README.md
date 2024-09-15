@@ -17,18 +17,3 @@ The clock updates every second, showing:
 - The number of days since Brexit occurred.
 
 The estimation is based on reports suggesting the UK loses around Â£40 billion annually in tax revenue post-Brexit.
-
-## How to View
-To see the live version of the Brexit Tax Loss Clock, you can deploy the HTML file on a hosting platform like GitHub Pages, Netlify, or Firebase Hosting.
-
-## Hosting Instructions
-If you would like to host the Brexit Tax Loss Clock:
-1. Clone this repository to your local machine.
-2. Upload the `brexit_tax_loss_clock_working_flag_final.html` file to a static hosting service (e.g., GitHub Pages, Netlify).
-3. For GitHub Pages:
-   - Go to your repository's settings, and scroll down to the "GitHub Pages" section.
-   - Under "Source," select the main branch and click "Save."
-   - The website will be live at `https://your-username.github.io/repository-name`.
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
