@@ -1,0 +1,101 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Brexit Tax Loss Clock</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f4f4f4;
+    }
+    .container {
+      margin-top: 50px;
+    }
+    .title {
+      font-size: 2rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+    }
+    .value {
+      font-size: 3rem;
+      color: #e74c3c;
+      margin-bottom: 20px;
+    }
+    .description {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+    }
+    .services {
+      font-size: 1.2rem;
+      margin: 20px;
+    }
+    .flags {
+      margin-bottom: 20px;
+    }
+    .flags img {
+      width: 100px;
+      margin: 0 10px;
+    }
+    .caveat {
+      font-size: 0.9rem;
+      color: #555;
+      margin-top: 30px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="flags">
+      <img src="https://flagcdn.com/w320/gb.png" alt="UK Flag">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="EU Flag">
+    </div>
+    <div class="title">Brexit Tax Loss Clock</div>
+    <div class="value" id="taxLoss">£0</div>
+    <div class="value" id="daysSinceBrexit">Days since Brexit: 0</div>
+    <div class="description">Since leaving the EU, the UK has lost tax revenue. Here's what that money could have funded:</div>
+    <div class="services" id="hospitals">🏥 Hospitals: 0</div>
+    <div class="services" id="schools">🏫 Schools: 0</div>
+    <div class="services" id="prisons">🏢 Prisons: 0</div>
+    <div class="caveat">
+      <p>Note: The figure of £40 billion per year is an estimate based on various studies and reports 
+      assessing the economic impact of Brexit on the UK economy. This estimate includes factors such as 
+      decreased trade, investment, and economic growth, leading to reduced tax revenue for the government. 
+      The exact impact may vary depending on sources and future economic conditions.</p>
+    </div>
+  </div>
+
+  <script>
+    const BREXIT_DATE = new Date('2020-01-31T23:00:00'); // Brexit date (UK leaving the EU)
+    const TAX_LOSS_PER_SECOND = 1268; // £40 billion/year = ~£1268 per second
+    const HOSPITAL_COST = 600000000; // £600 million for one hospital
+    const SCHOOL_COST = 30000000; // £30 million for one school
+    const PRISON_COST = 170000000; // £170 million for one prison
+
+    function updateClock() {
+      const now = new Date();
+      const secondsSinceBrexit = Math.floor((now - BREXIT_DATE) / 1000);
+      const taxLoss = secondsSinceBrexit * TAX_LOSS_PER_SECOND;
+      document.getElementById('taxLoss').textContent = `£${taxLoss.toLocaleString()}`;
+
+      const daysSinceBrexit = Math.floor(secondsSinceBrexit / (60 * 60 * 24));
+      document.getElementById('daysSinceBrexit').textContent = `Days since Brexit: ${daysSinceBrexit}`;
+
+      const hospitals = Math.floor(taxLoss / HOSPITAL_COST);
+      const schools = Math.floor(taxLoss / SCHOOL_COST);
+      const prisons = Math.floor(taxLoss / PRISON_COST);
+
+      document.getElementById('hospitals').textContent = `🏥 Hospitals: ${hospitals}`;
+      document.getElementById('schools').textContent = `🏫 Schools: ${schools}`;
+      document.getElementById('prisons').textContent = `🏢 Prisons: ${prisons}`;
+    }
+
+    setInterval(updateClock, 1000); // Update the clock every second
+  </script>
+</body>
+</html>
